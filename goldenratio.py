@@ -1,5 +1,4 @@
-from math import sin
-from math import *
+from math import sin, sqrt
 
 ratio = (sqrt(5) - 1) / 2
 
@@ -25,5 +24,3 @@ def search_min(a, b, eps):
         iter += 1
 
     return (a + b) / 2, iter
-
-print(search_min(11, 16, 0.01))

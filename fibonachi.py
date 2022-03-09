@@ -7,14 +7,13 @@ def f(x):
 @cache
 def F(n):
     if n in {0, 1}: return n
-    return 1/sqrt(5) * (((1+sqrt(5))/2)**n - ((1-sqrt(5))/2)**n)
-    #F(n - 1) + F(n - 2)
+    return 1/sqrt(5) * ( ((1+sqrt(5)) / 2)**n - ((1-sqrt(5)) / 2)**n )
 
 def search_min(a, b, eps):
     assert a < b, 'Incorrect input of interval (ಠ ͜ʖಠ)'
     iter = 0
 
-    n = int(b - a // eps)
+    n = int((b - a) // eps)
 
     while b - a > eps:
         x1 = a + ( F(n) / F(n + 2) ) * (b - a)
@@ -30,5 +29,3 @@ def search_min(a, b, eps):
         iter += 1
 
     return (a + b) / 2, iter
-
-print(search_min(25, 30, 0.1))
