@@ -1,10 +1,8 @@
-from functools import cache
 from math import *
 
 def f(x):
     return sin(x) * x ** 2
 
-@cache
 def F(n):
     if n in {0, 1}: return n
     return 1/sqrt(5) * ( ((1+sqrt(5)) / 2)**n - ((1-sqrt(5)) / 2)**n )

@@ -20,6 +20,5 @@ def search_min(a, b, delta, epsylon):
             a, b = x1, x2
 
         iter += 1
-        print(a, b)
     
     return (a + b) / 2, iter
