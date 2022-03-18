@@ -29,7 +29,5 @@ def search_min(a, c, epsylon):
                 c = b
         
         iter += 1
-        print(a, c)
-        
 
     return (c + a) / 2, iter
