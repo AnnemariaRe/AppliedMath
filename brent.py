@@ -1,7 +1,9 @@
 from asyncio.windows_events import NULL
 from math import sin, sqrt
+import math
 
 ratio = (sqrt(5) - 1) / 2
+
 
 def f(x):
     return sin(x) * x ** 2
@@ -21,8 +23,10 @@ def brent_min(a, b, e):
     dp = dc = b - a
     fx = fw = fv = f(x)
     iter = 0
+    list = []
 
     while b - a > e:
+        iter += 1
         g = dp / 2
         dp = dc
         u = parabolic_approximation(x, w, v, fx, fw, fv)
@@ -34,25 +38,32 @@ def brent_min(a, b, e):
                 u = x - ratio * (x - a)
                 dp = x - a
 
+        fu = f(u)
         dc = abs(u - x)
-        if f(u) > f(x):
-            if u < x:
-                a = u
-            else:
+        if fu > fx:
+            if u >= x:
                 b = u
-            if f(u) <= f(w) or w == x:
+            else:
+                a = u
+            if fu < fw or w == x:
                 v = w
                 w = u
-            elif f(u) <= f(v) or v == x or v == w:
+                fv = fw
+                fw = fu
+            elif fu < fv or v == x or v == w:
                 v = u
+                fv = fu
         else:
-            if u < x:
-                b = x
-            else:
+            if u > x:
                 a = x
-            x = w
+            else:
+                b = x
+            v = w
             w = x
             x = u
-        iter += 1
+            fv = fw
+            fw = fx
+            fx = fu
+        list.append((b, a))
 
-    return x, iter
+    return x, iter, list

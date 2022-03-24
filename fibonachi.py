@@ -12,7 +12,7 @@ def search_min(a, b, eps):
     iter = 0
 
     n = int((b - a) // eps)
-
+    list = []
     while b - a > eps:
         x1 = a + ( F(n) / F(n + 2) ) * (b - a)
         x2 = a + ( F(n + 1) / F(n + 2) ) * (b - a)
@@ -25,5 +25,6 @@ def search_min(a, b, eps):
             x1 = x2
         
         iter += 1
+        list.append((a, b))
 
-    return (a + b) / 2, iter
+    return (a + b) / 2, iter, list

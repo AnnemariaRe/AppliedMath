@@ -6,6 +6,7 @@ def f(x):
 def search_min(a, c, epsylon):
     assert a < c, 'Incorrect input of interval'
     iter = 0
+    list = []
 
     while c - a > epsylon:
         y1 = f(a)
@@ -29,5 +30,6 @@ def search_min(a, c, epsylon):
                 c = b
         
         iter += 1
+        list.append((a, b))
 
-    return (c + a) / 2, iter
+    return (c + a) / 2, iter, list

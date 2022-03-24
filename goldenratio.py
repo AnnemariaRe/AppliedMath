@@ -2,13 +2,15 @@ from math import sin, sqrt
 
 ratio = (sqrt(5) - 1) / 2
 
+
 def f(x):
     return sin(x) * x ** 2
+
 
 def search_min(a, b, eps):
     assert a < b, 'Incorrect input of interval (ಠ ͜ʖಠ)'
     iter = 0
-
+    list = []
     while b - a > eps:
         d = ratio * (b - a)
         x1 = a + d
@@ -22,5 +24,6 @@ def search_min(a, b, eps):
             a, b = x1, x2
 
         iter += 1
+        list.append((a, b))
 
-    return (a + b) / 2, iter
+    return (a + b) / 2, iter, list

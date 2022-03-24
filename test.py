@@ -33,7 +33,7 @@ print('Searching minimum for interval a = 16pi/3, b = 17pi/3, epsylon = 0.01')
 print('----------------------------------------------------------')
 a, b, e = 16*pi/3, 17*pi/3, 0.01
 print('Dichotomy algorithm: ', d_search_min(a, b, 0.001, e))
-print('Fibonachi algorithm: ', f_search_min(a, b, e))
+print('Fibonacci algorithm: ', f_search_min(a, b, e))
 print('Parabola algorithm: ', p_search_min(a, b, e))
 print('Golden ratio algorithm: ', g_search_min(a, b, e))
 print('Brent algorithm: ', b_search_min(a, b, e))
