@@ -21,20 +21,19 @@ def search_min(a, c, epsylon):
         u = abs(b - (((b - a) ** 2) * ((y2 - y3) - ((b - c) ** 2) * (y3 - y1))
                      / (2 * ((b - a) * (y2 - y3) - (b - c) * (y2 - y1)))))
 
-        fu = f(u)
         if b < u:
-            if y2 < fu:
+            if y2 < f(u):
                 c = u
             else:
                 a = b
         else:
-            if y2 < fu:
+            if y2 < f(u):
                 a = u
             else:
                 c = b
 
         iterations += 1
-        segments.append(b - a)
+        segments.append(c - a)
 
     return (c + a) / 2, iterations
 

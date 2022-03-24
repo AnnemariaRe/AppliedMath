@@ -19,47 +19,28 @@ plt.subplot(2, 1, 1)
 ax = plt.gca()
 ax.set_xlabel('x')
 ax.set_ylabel('d')
-x = 3
+
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 d = d_gs(3, 6, 0.001, 0.01)
-plt.scatter(x, d)
+plt.plot(x, d, label='dichotomy')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 d = f_gs(3, 6, 0.01)
-plt.scatter(x, d)
+plt.plot(x, d, label='fibonachi')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 d = p_gs(3, 6, 0.01)
-plt.scatter(x, d)
+plt.plot(x, d, label='parabolic')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 d = g_gs(3, 6, 0.01)
-plt.scatter(x, d)
+plt.plot(x, d, label='golden ratio')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 d = b_gs(3, 6, 0.01)
-plt.scatter(x, d)
-
-d = d_gs(3 * pi, 4 * pi, 0.001, 0.01)
-plt.scatter(x, d)
-d = f_gs(3 * pi, 4 * pi, 0.01)
-plt.scatter(x, d)
-d = p_gs(3 * pi, 4 * pi, 0.01)
-plt.scatter(x, d)
-d = g_gs(3, 6, 0.01)
-plt.scatter(x, d)
-d = b_gs(3, 6, 0.01)
-plt.scatter(x, d)
-
-d = d_gs(16 * pi / 3, 17 * pi / 3, 0.001, 0.01)
-plt.scatter(x, d)
-d = f_gs(16 * pi / 3, 17 * pi / 3, 0.01)
-plt.scatter(x, d)
-d = p_gs(16 * pi / 3, 17 * pi / 3, 0.01)
-plt.scatter(x, d)
-d = g_gs(3, 6, 0.01)
-plt.scatter(x, d)
-d = b_gs(3, 6, 0.01)
-plt.scatter(x, d)
+plt.plot(x, d, label='brent')
 
 x = np.linspace(0, 20, 100)
 
-plt.plot(x, d)
-
-plt.legend(loc="upper left", prop={'size': 7})
-plt.xlim(3, 20)
-plt.ylim(-300, 220)
+plt.legend(loc="upper left", prop={'size': 6})
+plt.xlim(0, 13)
+plt.ylim(-0.2, 2)
 
 plt.subplot(2, 1, 2)
 ax = plt.gca()
