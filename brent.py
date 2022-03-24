@@ -25,7 +25,7 @@ def brent_min(a, b, e):
     dp = dc = b - a
     fx = fw = fv = f(x)
     iterations = 0
-
+    oracle_calls = 1
     while b - a > e:
         iterations += 1
         g = dp / 2
@@ -40,6 +40,7 @@ def brent_min(a, b, e):
                 dp = x - a
 
         fu = f(u)
+        oracle_calls += 1
         dc = abs(u - x)
         if fu > fx:
             if u < x:
@@ -67,9 +68,5 @@ def brent_min(a, b, e):
 
         segments.append((b - a))
 
-    return x, iterations
+    return [(x, iterations), oracle_calls, segments]
 
-
-def get_segments(a, b, e):
-    brent_min(a, b, e)
-    return segments

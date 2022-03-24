@@ -2,8 +2,6 @@ from math import sin, sqrt
 
 ratio = (sqrt(5) - 1) / 2
 
-segments = []
-
 
 def f(x):
     return sin(x) * x ** 2
@@ -12,12 +10,15 @@ def f(x):
 def search_min(a, b, eps):
     assert a < b, 'Incorrect input of interval (ಠ ͜ʖಠ)'
     iterations = 0
+    segments = []
+    oracle_calls = 0
     while b - a > eps:
         d = ratio * (b - a)
         x1 = a + d
         x2 = b - d
         fx1 = f(x1)
         fx2 = f(x2)
+        oracle_calls += 2
         if fx1 > fx2:
             b = x1
         elif fx1 < fx2:
@@ -28,9 +29,5 @@ def search_min(a, b, eps):
         iterations += 1
         segments.append((b - a))
 
-    return (a + b) / 2, iterations
+    return [((a + b) / 2, iterations), oracle_calls, segments]
 
-
-def get_segments(a, b, e):
-    search_min(a, b, e)
-    return segments
