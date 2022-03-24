@@ -11,7 +11,9 @@ def F(n):
 
 def search_min(a, b, eps):
     assert a < b, 'Incorrect input of interval (ಠ ͜ʖಠ)'
+
     iter = 0
+    oracle_calls = 0
 
     n = int((b - a) // eps)
 
@@ -27,5 +29,6 @@ def search_min(a, b, eps):
             x1 = x2
         
         iter += 1
+        oracle_calls += 4;
 
-    return (a + b) / 2, iter
+    return [(a + b) / 2, iter, oracle_calls]
