@@ -2,6 +2,8 @@ from math import sin, sqrt
 
 ratio = (sqrt(5) - 1) / 2
 
+segments = []
+
 
 def f(x):
     return sin(x) * x ** 2
@@ -9,21 +11,26 @@ def f(x):
 
 def search_min(a, b, eps):
     assert a < b, 'Incorrect input of interval (ಠ ͜ʖಠ)'
-    iter = 0
-    list = []
+    iterations = 0
     while b - a > eps:
         d = ratio * (b - a)
         x1 = a + d
         x2 = b - d
-
-        if f(x1) > f(x2):
+        fx1 = f(x1)
+        fx2 = f(x2)
+        if fx1 > fx2:
             b = x1
-        elif f(x1) < f(x2):
+        elif fx1 < fx2:
             a = x2
         else:
             a, b = x1, x2
 
-        iter += 1
-        list.append((a, b))
+        iterations += 1
+        segments.append((b - a))
 
-    return (a + b) / 2, iter, list
+    return (a + b) / 2, iterations
+
+
+def get_segments(a, b, e):
+    search_min(a, b, e)
+    return segments

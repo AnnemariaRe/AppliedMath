@@ -4,6 +4,7 @@ from fibonachi import search_min as f_search_min
 from parabola import search_min as p_search_min
 from goldenratio import search_min as g_search_min
 from brent import brent_min as b_search_min
+from brent import get_segments as bgs
 
 print('Searching minimum for interval a = 3, b = 6, epsylon = 0.01')
 print('----------------------------------------------------------')

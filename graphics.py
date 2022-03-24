@@ -7,55 +7,59 @@ from fibonachi import search_min as f_search_min
 from parabola import search_min as p_search_min
 from goldenratio import search_min as g_search_min
 from brent import brent_min as b_search_min
+from dichotomy import get_segments as d_gs
+from fibonachi import get_segments as f_gs
+from parabola import get_segments as p_gs
+from goldenratio import get_segments as g_gs
+from brent import get_segments as b_gs
 
-plt.figure(figsize=(6,7))
+plt.figure(figsize=(6, 7))
 
 plt.subplot(2, 1, 1)
 ax = plt.gca()
 ax.set_xlabel('x')
-ax.set_ylabel('y')
+ax.set_ylabel('d')
+x = 3
+d = d_gs(3, 6, 0.001, 0.01)
+plt.scatter(x, d)
+d = f_gs(3, 6, 0.01)
+plt.scatter(x, d)
+d = p_gs(3, 6, 0.01)
+plt.scatter(x, d)
+d = g_gs(3, 6, 0.01)
+plt.scatter(x, d)
+d = b_gs(3, 6, 0.01)
+plt.scatter(x, d)
 
-x , y = d_search_min(3, 6, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
+d = d_gs(3 * pi, 4 * pi, 0.001, 0.01)
+plt.scatter(x, d)
+d = f_gs(3 * pi, 4 * pi, 0.01)
+plt.scatter(x, d)
+d = p_gs(3 * pi, 4 * pi, 0.01)
+plt.scatter(x, d)
+d = g_gs(3, 6, 0.01)
+plt.scatter(x, d)
+d = b_gs(3, 6, 0.01)
+plt.scatter(x, d)
 
-x , y = d_search_min(3*pi, 4*pi, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(3*pi, 4*pi, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(3*pi, 4*pi, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-
-x , y = d_search_min(16*pi/3, 17*pi/3, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(16*pi/3, 17*pi/3, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(16*pi/3, 17*pi/3, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
+d = d_gs(16 * pi / 3, 17 * pi / 3, 0.001, 0.01)
+plt.scatter(x, d)
+d = f_gs(16 * pi / 3, 17 * pi / 3, 0.01)
+plt.scatter(x, d)
+d = p_gs(16 * pi / 3, 17 * pi / 3, 0.01)
+plt.scatter(x, d)
+d = g_gs(3, 6, 0.01)
+plt.scatter(x, d)
+d = b_gs(3, 6, 0.01)
+plt.scatter(x, d)
 
 x = np.linspace(0, 20, 100)
-y = np.sin(x) * x ** 2
-plt.plot(x, y, label='f(x)')
+
+plt.plot(x, d)
 
 plt.legend(loc="upper left", prop={'size': 7})
 plt.xlim(3, 20)
 plt.ylim(-300, 220)
-
 
 plt.subplot(2, 1, 2)
 ax = plt.gca()
@@ -103,5 +107,6 @@ plt.legend(loc="upper left", prop={'size': 6})
 plt.ylim(5, 16)
 
 plt.subplots_adjust(hspace=0.3, top=1)
+
 
 plt.show()

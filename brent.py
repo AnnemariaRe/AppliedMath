@@ -4,6 +4,8 @@ import math
 
 ratio = (sqrt(5) - 1) / 2
 
+segments = []
+
 
 def f(x):
     return sin(x) * x ** 2
@@ -22,11 +24,10 @@ def brent_min(a, b, e):
     x = w = v = a + ratio * (b - a)
     dp = dc = b - a
     fx = fw = fv = f(x)
-    iter = 0
-    list = []
+    iterations = 0
 
     while b - a > e:
-        iter += 1
+        iterations += 1
         g = dp / 2
         dp = dc
         u = parabolic_approximation(x, w, v, fx, fw, fv)
@@ -41,29 +42,34 @@ def brent_min(a, b, e):
         fu = f(u)
         dc = abs(u - x)
         if fu > fx:
-            if u >= x:
-                b = u
-            else:
+            if u < x:
                 a = u
-            if fu < fw or w == x:
+            else:
+                b = u
+            if fu <= fw or w == x:
                 v = w
                 w = u
                 fv = fw
                 fw = fu
-            elif fu < fv or v == x or v == w:
+            elif fu <= fv or v == x or v == w:
                 v = u
                 fv = fu
         else:
-            if u > x:
-                a = x
-            else:
+            if u < x:
                 b = x
+            else:
+                a = x
             v = w
             w = x
             x = u
             fv = fw
             fw = fx
-            fx = fu
-        list.append((b, a))
 
-    return x, iter, list
+        segments.append((b - a))
+
+    return x, iterations
+
+
+def get_segments(a, b, e):
+    brent_min(a, b, e)
+    return segments
