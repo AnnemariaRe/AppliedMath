@@ -1,7 +1,11 @@
 from asyncio.windows_events import NULL
 from math import sin, sqrt
+import math
 
 ratio = (sqrt(5) - 1) / 2
+
+segments = []
+
 
 def f(x):
     return sin(x) * x ** 2
@@ -20,9 +24,10 @@ def brent_min(a, b, e):
     x = w = v = a + ratio * (b - a)
     dp = dc = b - a
     fx = fw = fv = f(x)
-    iter = 0
-
+    iterations = 0
+    oracle_calls = 1
     while b - a > e:
+        iterations += 1
         g = dp / 2
         dp = dc
         u = parabolic_approximation(x, w, v, fx, fw, fv)
@@ -34,25 +39,34 @@ def brent_min(a, b, e):
                 u = x - ratio * (x - a)
                 dp = x - a
 
+        fu = f(u)
+        oracle_calls += 1
         dc = abs(u - x)
-        if f(u) > f(x):
+        if fu > fx:
             if u < x:
                 a = u
             else:
                 b = u
-            if f(u) <= f(w) or w == x:
+            if fu <= fw or w == x:
                 v = w
                 w = u
-            elif f(u) <= f(v) or v == x or v == w:
+                fv = fw
+                fw = fu
+            elif fu <= fv or v == x or v == w:
                 v = u
+                fv = fu
         else:
             if u < x:
                 b = x
             else:
                 a = x
-            x = w
+            v = w
             w = x
             x = u
-        iter += 1
+            fv = fw
+            fw = fx
 
-    return x, iter
+        segments.append((b - a))
+
+    return [(x, iterations), oracle_calls, segments]
+

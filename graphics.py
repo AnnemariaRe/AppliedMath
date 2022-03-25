@@ -8,100 +8,127 @@ from parabola import search_min as p_search_min
 from goldenratio import search_min as g_search_min
 from brent import brent_min as b_search_min
 
-plt.figure(figsize=(6,7))
+plt.figure(figsize=(17, 4))
 
-plt.subplot(2, 1, 1)
+plt.subplot(1, 3, 1)
 ax = plt.gca()
-ax.set_xlabel('x')
-ax.set_ylabel('y')
+ax.set_xlabel('iteration')
+ax.set_ylabel('segment length')
 
-x , y = d_search_min(3, 6, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-
-x , y = d_search_min(3*pi, 4*pi, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(3*pi, 4*pi, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(3*pi, 4*pi, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-
-x , y = d_search_min(16*pi/3, 17*pi/3, 0.001, 0.01)
-plt.scatter(x, y)
-x , y = f_search_min(16*pi/3, 17*pi/3, 0.01)
-plt.scatter(x, y)
-x , y = p_search_min(16*pi/3, 17*pi/3, 0.01)
-plt.scatter(x, y)
-x , y = g_search_min(3, 6, 0.01)
-plt.scatter(x, y)
-x , y = b_search_min(3, 6, 0.01)
-plt.scatter(x, y)
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+d = d_search_min(3, 6, 0.001, 0.01)[2]
+plt.plot(x, d, label='dichotomy')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+d = f_search_min(3, 6, 0.01)[2]
+plt.plot(x, d, label='fibonachi')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+d = p_search_min(3, 6, 0.01)[2]
+plt.plot(x, d, label='parabolic')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+d = g_search_min(3, 6, 0.01)[2]
+plt.plot(x, d, label='golden ratio')
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+d = b_search_min(3, 6, 0.01)[2]
+plt.plot(x, d, label='brent')
 
 x = np.linspace(0, 20, 100)
-y = np.sin(x) * x ** 2
-plt.plot(x, y, label='f(x)')
 
-plt.legend(loc="upper left", prop={'size': 7})
-plt.xlim(3, 20)
-plt.ylim(-300, 220)
+plt.legend(loc="upper right", prop={'size': 6})
+plt.xlim(0, 13)
+plt.ylim(-0.2, 2)
 
-
-plt.subplot(2, 1, 2)
+plt.subplot(1, 3, 2)
 ax = plt.gca()
 ax.set_xlabel('accuracy')
 ax.set_ylabel('iterations')
 
 x = [0.01, 0.03, 0.08, 0.1]
 
-a, y = d_search_min(3, 6, 0.001, 0.01)
-a, y1 = d_search_min(3, 6, 0.001, 0.03)
-a, y2 = d_search_min(3, 6, 0.001, 0.08)
-a, y3 = d_search_min(3, 6, 0.001, 0.1)
+a, y = d_search_min(3, 6, 0.001, 0.01)[0]
+a, y1 = d_search_min(3, 6, 0.001, 0.03)[0]
+a, y2 = d_search_min(3, 6, 0.001, 0.08)[0]
+a, y3 = d_search_min(3, 6, 0.001, 0.1)[0]
 data = [y, y1, y2, y3]
 plt.plot(x, data, label='dichotomy')
 
-a, y = f_search_min(3, 6, 0.01)
-a, y1 = f_search_min(3, 6, 0.03)
-a, y2 = f_search_min(3, 6, 0.08)
-a, y3 = f_search_min(3, 6, 0.1)
+a, y = f_search_min(3, 6, 0.01)[0]
+a, y1 = f_search_min(3, 6, 0.03)[0]
+a, y2 = f_search_min(3, 6, 0.08)[0]
+a, y3 = f_search_min(3, 6, 0.1)[0]
 data = [y, y1, y2, y3]
 plt.plot(x, data, label='fibonachi')
 
-a, y = p_search_min(3, 6, 0.01)
-a, y1 = p_search_min(3, 6, 0.03)
-a, y2 = p_search_min(3, 6, 0.08)
-a, y3 = p_search_min(3, 6, 0.1)
+a, y = p_search_min(3, 6, 0.01)[0]
+a, y1 = p_search_min(3, 6, 0.03)[0]
+a, y2 = p_search_min(3, 6, 0.08)[0]
+a, y3 = p_search_min(3, 6, 0.1)[0]
 data = [y, y1, y2, y3]
 plt.plot(x, data, label='parabolic')
 
-a, y = g_search_min(3, 6, 0.01)
-a, y1 = g_search_min(3, 6, 0.03)
-a, y2 = g_search_min(3, 6, 0.08)
-a, y3 = g_search_min(3, 6, 0.1)
+a, y = g_search_min(3, 6, 0.01)[0]
+a, y1 = g_search_min(3, 6, 0.03)[0]
+a, y2 = g_search_min(3, 6, 0.08)[0]
+a, y3 = g_search_min(3, 6, 0.1)[0]
 data = [y, y1, y2, y3]
 plt.plot(x, data, label='golden ratio')
 
-a, y = b_search_min(3, 6, 0.01)
-a, y1 = b_search_min(3, 6, 0.03)
-a, y2 = b_search_min(3, 6, 0.08)
-a, y3 = b_search_min(3, 6, 0.1)
+a, y = b_search_min(3, 6, 0.01)[0]
+a, y1 = b_search_min(3, 6, 0.03)[0]
+a, y2 = b_search_min(3, 6, 0.08)[0]
+a, y3 = b_search_min(3, 6, 0.1)[0]
 data = [y, y1, y2, y3]
 plt.plot(x, data, label='brent')
 
-plt.legend(loc="upper left", prop={'size': 6})
+plt.legend(loc="upper right", prop={'size': 6})
 plt.ylim(5, 16)
 
-plt.subplots_adjust(hspace=0.3, top=1)
+
+plt.subplot(1, 3, 3)
+ax = plt.gca()
+ax.set_xlabel('accuracy')
+ax.set_ylabel('oracle calls')
+
+x = [0.01, 0.03, 0.08, 0.1]
+
+y = d_search_min(3, 6, 0.001, 0.01)[1]
+y1 = d_search_min(3, 6, 0.001, 0.03)[1]
+y2 = d_search_min(3, 6, 0.001, 0.08)[1]
+y3 = d_search_min(3, 6, 0.001, 0.1)[1]
+data = [y, y1, y2, y3]
+plt.plot(x, data, label='dichotomy')
+
+y = f_search_min(3, 6, 0.01)[1]
+y1 = f_search_min(3, 6, 0.03)[1]
+y2 = f_search_min(3, 6, 0.08)[1]
+y3 = f_search_min(3, 6, 0.1)[1]
+data = [y, y1, y2, y3]
+plt.plot(x, data, label='fibonachi')
+
+y = p_search_min(3, 6, 0.01)[1]
+y1 = p_search_min(3, 6, 0.03)[1]
+y2 = p_search_min(3, 6, 0.08)[1]
+y3 = p_search_min(3, 6, 0.1)[1]
+data = [y, y1, y2, y3]
+plt.plot(x, data, label='parabolic')
+
+y = g_search_min(3, 6, 0.01)[1]
+y1 = g_search_min(3, 6, 0.03)[1]
+y2 = g_search_min(3, 6, 0.08)[1]
+y3 = g_search_min(3, 6, 0.1)[1]
+data = [y, y1, y2, y3]
+plt.plot(x, data, label='golden ratio')
+
+y = b_search_min(3, 6, 0.01)[1]
+y1 = b_search_min(3, 6, 0.03)[1]
+y2 = b_search_min(3, 6, 0.08)[1]
+y3 = b_search_min(3, 6, 0.1)[1]
+data = [y, y1, y2, y3]
+plt.plot(x, data, label='brent')
+
+plt.legend(loc="upper right", prop={'size': 6})
+plt.ylim(7, 42)
+
+plt.subplots_adjust(wspace=0.2, hspace=0)
+
 
 plt.show()
