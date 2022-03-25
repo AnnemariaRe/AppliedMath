@@ -24,7 +24,7 @@ plt.plot(x, d, label='fibonachi')
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 d = p_search_min(3, 6, 0.01)[2]
 plt.plot(x, d, label='parabolic')
-x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+x = [1, 2, 3, 4, 5, 6]
 d = g_search_min(3, 6, 0.01)[2]
 plt.plot(x, d, label='golden ratio')
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -80,7 +80,7 @@ data = [y, y1, y2, y3]
 plt.plot(x, data, label='brent')
 
 plt.legend(loc="upper right", prop={'size': 6})
-plt.ylim(5, 16)
+plt.ylim(3, 15)
 
 
 plt.subplot(1, 3, 3)
@@ -126,7 +126,7 @@ data = [y, y1, y2, y3]
 plt.plot(x, data, label='brent')
 
 plt.legend(loc="upper right", prop={'size': 6})
-plt.ylim(7, 42)
+plt.ylim(5, 42)
 
 plt.subplots_adjust(wspace=0.2, hspace=0)
 
