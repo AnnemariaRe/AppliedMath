@@ -43,5 +43,3 @@ def search_min(a, b, eps):
         segments.append((b - a))
 
     return [((a + b) / 2, iterations), oracle_calls, segments]
-
-print(search_min(2, 7, 0.01))

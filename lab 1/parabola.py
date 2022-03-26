@@ -10,6 +10,7 @@ def search_min(a, c, epsylon):
     assert a < c, 'Incorrect input of interval'
     iterations = 0
     oracle_calls = 0
+    
     while c - a > epsylon:
         y1 = f(a)
         y3 = f(c)

@@ -1,6 +1,6 @@
 from math import sin, sqrt
 
-ratio = (sqrt(5) - 1) / 2
+ratio = (3 - sqrt(5)) / 2
 
 
 def f(x):
